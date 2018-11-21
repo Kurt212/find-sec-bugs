@@ -5864,4 +5864,20 @@ Transport.send(message);
         <Details>Identify hardcoded credentials when variable named password supplied to a map</Details>
     </Detector>
 
+    <!-- Off-by-one detector -->
+    <Detector class="com.h3xstream.findsecbugs.OffByOneDetector">
+        <Details>Detector for off-by-one bug</Details>
+    </Detector>
+    <BugPattern type="OFF_BY_ONE">
+        <ShortDescription>Off-by-one in for-loop bug detected</ShortDescription>
+        <LongDescription>Looks like, you are using wrong comparison method when iterating over array, String or ArrayList.</LongDescription>
+        <Details>
+            <![CDATA[
+<p>Looks like, you are using wrong comparison method when iterating over array, String or ArrayList. </p>
+<p>It is suggested to replace '&lt;=' with '&lt;' or '&gt;=' with '&gt;'.</p>
+            ]]>
+        </Details>
+    </BugPattern>
+    <BugCode abbrev="OFFBYONE">Off-by-one bug</BugCode>
+
 </MessageCollection>
