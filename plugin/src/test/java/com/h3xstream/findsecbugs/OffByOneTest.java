@@ -18,8 +18,8 @@ public class OffByOneTest extends BaseDetectorTest {
         analyze(files, reporter);
 
         int lineNumbers[] = {
-                 8, 13, 24,
-                29, 34, 45
+                 8, 14, 26,
+                32, 38, 50
         };
 
         for (int linenumber : lineNumbers) {
