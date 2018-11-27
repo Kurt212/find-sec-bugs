@@ -85,9 +85,15 @@ public class OffByOneDetector extends OpcodeStackDetector implements StatelessDe
 
     @Override
     public void sawOpcode(int seen) {
+        ConstantPoolGen cpg = null;
 
-        MethodGen methodGen = getClassContext().getMethodGen(getMethod());
-        ConstantPoolGen cpg = methodGen.getConstantPool();
+        try {
+            cpg =  new ConstantPoolGen(getMethod().getConstantPool());
+        } catch (NullPointerException ex) {
+            System.err.printf("Got NPE at [%s:%s]\n", getClassContext().getJavaClass().getClassName(), getMethod().getName());
+            return;
+        }
+
 
         if (stack.getStackDepth() >= 2 && (seen == Const.IF_ICMPGT || seen == Const.IF_ICMPLT )) {
             // now we detected comparison
